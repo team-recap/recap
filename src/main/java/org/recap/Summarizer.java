@@ -19,10 +19,8 @@ public class Summarizer {
 
         Map<String, List<String>> wordsWithSentences = Extractor.extract(sentences); // 명사 추출
 
-        // 그래프 생성 및 빌드
-        Graph graph = new Graph(wordsWithSentences);
-        graph.build(similarityMethods);
-
+        // 그래프 생성
+        Graph graph = new Graph(wordsWithSentences, similarityMethods);
         return graph.calculatePageRank().stream().map(Map.Entry::getKey).collect(Collectors.toList());
     }
 }
