@@ -15,7 +15,7 @@ public class Extractor {
     public static Map<String, List<String>> extract(List<String> sentences) {
         final Tagger tagger = new Tagger();
         final Parser parser = new Parser();
-        final Map<String, List<String>> result = new LinkedHashMap<>();
+        final Map<String, List<String>> wordsWithSentences = new LinkedHashMap<>(); // 키 - 문장, 값 - 추출된 단어들
 
         // 문장별
         for (String sentence : sentences) {
@@ -30,14 +30,15 @@ public class Extractor {
                 for (Morpheme morpheme : word.subList(0, word.size())) {
                     // 모든 명사 종류 추출
                     if (morpheme.getTag().toString().matches("NN[GP]")) { // 일반 명사나 고유 명사를 추출함
-                        collectedWords.add(morpheme.getSurface());
+                        if (morpheme.getSurface().length() > 1) // 글자가 하나인 명사는 제외
+                            collectedWords.add(morpheme.getSurface());
                     }
                 }
             }
 
-            result.put(sentence, collectedWords);
+            wordsWithSentences.put(sentence, collectedWords);
         }
 
-        return result;
+        return wordsWithSentences;
     }
 }
