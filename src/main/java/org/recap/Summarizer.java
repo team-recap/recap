@@ -20,12 +20,19 @@ public class Summarizer {
 
         //System.out.println(sentences.size());
 
-        //List<String> withOutMAG_Sentences = Short.sentenceShorter(sentences); // MAG(부사제거)
+        int sentenceSize = sentences.size();
 
-        Map<String, List<String>> wordsWithSentences = Extractor.extract(sentences); // 부사제거 명사추출 한번에
+        if(sentenceSize<3){  //총문장 갯수가 3보다 작으면
+            return sentences;
+        }
+        else{
+            //List<String> withOutMAG_Sentences = Short.sentenceShorter(sentences); // MAG(부사제거)
 
-        // 그래프 생성
-        Graph graph = new Graph(wordsWithSentences, similarityMethods);
-        return graph.calculatePageRank().stream().map(Map.Entry::getKey).collect(Collectors.toList());
+            Map<String, List<String>> wordsWithSentences = Extractor.extract(sentences); // 부사제거 명사추출 한번에
+
+            // 그래프 생성
+            Graph graph = new Graph(wordsWithSentences, similarityMethods);
+            return graph.calculatePageRank(Math.round(sentenceSize/2f)).stream().map(Map.Entry::getKey).collect(Collectors.toList());
+        }
     }
 }
