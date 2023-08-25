@@ -3,7 +3,7 @@ package org.recap.sentence;
 import kr.bydelta.koala.data.Morpheme;
 import kr.bydelta.koala.data.Sentence;
 import kr.bydelta.koala.data.Word;
-import kr.bydelta.koala.hnn.Parser;
+//import kr.bydelta.koala.hnn.Parser;
 import kr.bydelta.koala.hnn.Tagger;
 
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class Short {
     public static List<String> sentenceShorter(List<String> sentences) {
         final Tagger tagger = new Tagger();
-        final Parser parser = new Parser();
+        //final Parser parser = new Parser();
         List<String> withOutMAGSentences = new ArrayList<>();
 
         // 문장별
