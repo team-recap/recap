@@ -57,14 +57,18 @@ public class Extractor {
 
             // 문장 내 단어별
             for (Word word : analyzedSentence.getNouns()) {
+                String collectedWord = ""; // 저장될 단어
+
                 // 단어 내 형태소별 (ex. '리캡은' -> '리캡' + '은')
                 for (Morpheme morpheme : word) {
                     // 모든 명사 종류 추출
-                    if (morpheme.getTag().toString().matches("NN[GP]")) { // 일반 명사나 고유 명사를 추출함
-                        if (morpheme.getSurface().length() > 1) // 글자가 하나인 명사는 제외
-                            collectedWords.add(morpheme.getSurface());
+                    if (morpheme.getTag().toString().startsWith("N")) { // 명사 추출
+                        collectedWord += morpheme.getSurface().replaceAll("[\".,“”]", ""); // 특수문자 삭제
                     }
                 }
+
+                if (collectedWord.length() >= 2) // 단어 길이가 2 이상일 때만 해당 단어 저장
+                    collectedWords.add(collectedWord);
             }
 
             wordsWithSentences.put(withOutMAGSentence.toString(), collectedWords);
