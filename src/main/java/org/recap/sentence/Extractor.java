@@ -27,7 +27,7 @@ public class Extractor {
             // 문장 내 단어별
             for (Word word : analyzedSentence.getNouns()) {
                 // 단어 내 형태소별 (ex. '리캡은' -> '리캡' + '은')
-                for (Morpheme morpheme : word.subList(0, word.size())) {
+                for (Morpheme morpheme : word) {
                     // 모든 명사 종류 추출
                     if (morpheme.getTag().toString().matches("NN[GP]")) { // 일반 명사나 고유 명사를 추출함
                         if (morpheme.getSurface().length() > 1) // 글자가 하나인 명사는 제외
