@@ -18,9 +18,11 @@ public class Summarizer {
     public List<String> summarize(Graph.SimilarityMethods similarityMethods) {
         List<String> sentences = Splitter.split(text); // 문장 분리
 
-        List<String> withOutMAG_Sentences = Short.sentenceShorter(sentences); // MAG(부사제거)
+        //System.out.println(sentences.size());
 
-        Map<String, List<String>> wordsWithSentences = Extractor.extract(withOutMAG_Sentences); // 명사 추출
+        //List<String> withOutMAG_Sentences = Short.sentenceShorter(sentences); // MAG(부사제거)
+
+        Map<String, List<String>> wordsWithSentences = Extractor.extract(sentences); // 부사제거 명사추출 한번에
 
         // 그래프 생성
         Graph graph = new Graph(wordsWithSentences, similarityMethods);
