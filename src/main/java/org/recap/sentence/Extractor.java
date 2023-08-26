@@ -63,7 +63,7 @@ public class Extractor {
                 for (Morpheme morpheme : word) {
                     // 모든 명사 종류 추출
                     if (morpheme.getTag().toString().startsWith("N")) { // 명사 추출
-                        collectedWord += morpheme.getSurface().replaceAll("[\".,“”]", ""); // 특수문자 삭제
+                        collectedWord = collectedWord.concat(morpheme.getSurface().replaceAll("[\".,“”]", "")); // 특수문자 삭제
                     }
                 }
 

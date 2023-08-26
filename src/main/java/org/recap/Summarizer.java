@@ -9,13 +9,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Summarizer {
-    private final String text;
-
-    public Summarizer(String text) {
-        this.text = text;
-    }
-
-    public List<String> summarize(Graph.SimilarityMethods similarityMethods) {
+    public List<String> summarize(String text, Graph.SimilarityMethods similarityMethods) {
         List<String> sentences = Splitter.split(text); // 문장 분리
 
         //System.out.println(sentences.size());
