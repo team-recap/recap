@@ -40,15 +40,15 @@ public class Extractor {
                     collectedWords.add(collectedWord);
             }
 
-            wordsWithSentences.put(makeMagRemovedSentence(analyzedSentence), collectedWords);
+            wordsWithSentences.put(makeMaRemovedSentence(analyzedSentence), collectedWords);
         }
 
         return wordsWithSentences;
     }
 
-    public static String makeMagRemovedSentence(Sentence analyzedSentence) {
+    public static String makeMaRemovedSentence(Sentence analyzedSentence) {
 
-        StringBuilder magRemovedSentence = new StringBuilder();
+        StringBuilder maRemovedSentence = new StringBuilder();
 
         int lastSpaceChecker=0;
 
@@ -58,22 +58,22 @@ public class Extractor {
             lastSpaceChecker++;
 
             // 단어 내 형태소별 (ex. '리캡은' -> '리캡' + '은')
-            boolean hasMAG = false; // 부사 여부 확인
+            boolean hasMA = false; // 부사 여부 확인
             for (Morpheme morpheme : word) {
-                if (morpheme.getTag().toString().equals("MAG")) {
-                    hasMAG = true;
+                if (morpheme.getTag().toString().startsWith("MA")) {
+                    hasMA = true;
                 }
             }
 
             // 부사가 없는 경우에만 추가
-            if (!hasMAG) {
-                magRemovedSentence.append(word.getSurface());
+            if (!hasMA) {
+                maRemovedSentence.append(word.getSurface());
                 if(lastSpaceChecker < analyzedSentence.getSize()-1){
-                    magRemovedSentence.append(" ");
+                    maRemovedSentence.append(" ");
                 }
             }
         }
 
-        return magRemovedSentence.toString();
+        return maRemovedSentence.toString();
     }
 }
