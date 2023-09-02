@@ -42,12 +42,12 @@ public class Graph {
         }
     }
 
-    public List<Map.Entry<String, Double>> calculatePageRank() {
+    public List<Map.Entry<String, Double>> calculatePageRank(int recapSize) {
         VertexScoringAlgorithm<String, Double> pageRank = new PageRank<>(graph);
         List<String> sentences = new ArrayList<>(sentencesWithWords.keySet());
         return pageRank.getScores().entrySet().stream()
                 .sorted((elem1, elem2) -> elem1.getValue() < elem2.getValue() ? 1 : -1)
-                .limit(3)
+                .limit(recapSize)
                 .collect(Collectors.toList())
                 .stream()
                 .sorted((source, target) -> sentences.indexOf(source.getKey()) > sentences.indexOf(target.getKey()) ? 1 : -1)
