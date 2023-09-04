@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
-import org.recap.Graph;
 import org.recap.Summarizer;
+import org.recap.graph.Graph;
 
 public class AppTest {
     @Test
