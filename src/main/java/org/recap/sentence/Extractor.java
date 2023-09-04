@@ -39,7 +39,7 @@ public class Extractor {
                 if (collectedWord.length() >= 2) // 단어 길이가 2 이상일 때만 해당 단어 저장
                     collectedWords.add(collectedWord);
             }
-
+            // 키 - 부사제거한 문장, 값 - 추출된 명사들
             wordsWithSentences.put(makeMaRemovedSentence(analyzedSentence), collectedWords);
         }
 
@@ -50,6 +50,7 @@ public class Extractor {
 
         StringBuilder maRemovedSentence = new StringBuilder();
 
+        //문장을 재구성할때 마지막에 마침표 전에는 공백을 넣으면 안되기 때문체 체크하기 위한 변수
         int lastSpaceChecker=0;
 
         // 문장 내 단어별
@@ -68,7 +69,7 @@ public class Extractor {
             // 부사가 없는 경우에만 추가
             if (!hasMA) {
                 maRemovedSentence.append(word.getSurface());
-                if(lastSpaceChecker < analyzedSentence.getSize()-1){
+                if(lastSpaceChecker < analyzedSentence.getSize()-1){  // 문장 재구성시 마침표 전에는 공백을 넣지 않음
                     maRemovedSentence.append(" ");
                 }
             }
