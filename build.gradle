@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'org.recap'
-version = '0.0.4'
+version = '0.0.6'
 
 repositories {
     mavenCentral()
@@ -12,7 +12,6 @@ repositories {
 
 dependencies {
     implementation "kr.bydelta:koalanlp-hnn:2.1.4:assembly"
-    implementation "org.jgrapht:jgrapht-core:1.5.2"
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
