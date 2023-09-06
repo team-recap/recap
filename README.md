@@ -60,4 +60,4 @@ System.out.println(summarizedText);
 
 
 ## 라이선스
-[MIT license](https://github.com/facebook/react/blob/main/LICENSE)
+[MIT license](https://github.com/team-recap/recap/blob/main/LICENSE)
